@@ -128,7 +128,9 @@ text-align: center;
 }
 h3 {font-size: 20px;
   margin: 30px;}
-h4 {}
+h4 {
+  color: rgb(220, 97, 97);
+}
 h5 {}
 h6 {}
 

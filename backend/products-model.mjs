@@ -55,6 +55,11 @@ const findProducts = async (filter) => {
   return query.exec();
 };
 
+const findNumberOfProducts = async (filter) => {
+  const query = Product.countDocuments(filter);
+  return query.exec();
+};
+
 // Retrieve based on the ID and return a promise.
 const findProductById = async (_id) => {
   const query = Product.findById(_id);
@@ -89,6 +94,7 @@ const replaceProduct = async (_id, type, name, description, link, date) => {
 // Export our variables for use in the controller file.
 export {
   createProduct,
+  findNumberOfProducts,
   findProducts,
   findProductById,
   replaceProduct,

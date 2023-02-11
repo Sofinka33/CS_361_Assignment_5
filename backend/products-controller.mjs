@@ -1,10 +1,13 @@
 import 'dotenv/config';
 import express from 'express';
+import cors from 'cors';
 import * as products from './products-model.mjs';
 
 const PORT = process.env.PORT;
 const app = express();
+
 app.use(express.json());
+app.use(cors());
 
 
 // CREATE controller ******************************************
@@ -22,6 +25,19 @@ app.post ('/products', (req,res) => {
         .catch(error => {
             console.log(error);
             res.status(400).json({ error: 'Creation of a document failed due to invalid syntax.' });
+        });
+});
+
+// GET products filtered by type,  name, description, or date
+app.get('/totalNumberOfEndorsedProducts', (req, res) => {
+    let filter = {};
+    products.findNumberOfProducts(filter, '', 0)
+        .then(products => {
+            res.send(products.toString());
+        })
+        .catch(error => {
+            console.error(error);
+            res.send({ Error: 'Request to retrieve documents failed' });
         });
 });
 
